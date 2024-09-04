@@ -146,8 +146,9 @@ dashboard.section.buttons.val = {
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
+  dashboard.button("u", "  > Update", ":PlugUpdate<CR>"),
   dashboard.button("s", "  > Settings", ":edit $HOME/.config/nvim/init.vim<CR>"),
-  dashboard.button("q", "  > Quit", ":qa<CR>"),
+  dashboard.button("q", "  > Quit", ":qa<CR>"),
 }
 
 dashboard.section.footer.val = footer()
