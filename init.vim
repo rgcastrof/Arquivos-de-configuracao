@@ -20,6 +20,7 @@ Plug 'rebelot/kanagawa.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'navarasu/onedark.nvim'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -36,18 +37,21 @@ set mouse=a
 set scrolloff=8
 " set colorcolumn=80
 set smartindent
-set termguicolors
 " set cursorline
-colorscheme zaibatsu
-"
-" Paleta de cores para o onedark
-"let g:onedark_config = {
-"    \ 'style': 'deep',
-"\}
-"colorscheme onedark
+set termguicolors
 
-highlight Normal guibg=NONE ctermbg=NONE
-highlight EndOfBuffer guibg=NONE ctermbg=NONE
+"
+" Paleta de cores para o ayu
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+
+"Paleta de cores para o onedark
+let g:onedark_config = {
+    \ 'style': 'deep',
+\}
+colorscheme onedark
 
 
 " Telescope shortcuts
@@ -61,7 +65,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 "Lualine
 lua << END
 require('lualine').setup {
-  options = { theme = '16color' }
+  options = { theme = 'onedark' }
 }
 END
 
@@ -147,7 +151,7 @@ dashboard.section.buttons.val = {
   dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("u", "  > Update", ":PlugUpdate<CR>"),
-  dashboard.button("s", "  > Settings", ":edit $HOME/.config/nvim/init.vim<CR>"),
+  dashboard.button("s", "  > Settings", ":edit $HOME/.config/nvim/init.vim<CR>"),
   dashboard.button("q", "  > Quit", ":qa<CR>"),
 }
 
@@ -286,8 +290,8 @@ endif
 
 " Use CTRL-S for selections ranges
 " Requires 'textDocument/selectionRange' support of language server
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
