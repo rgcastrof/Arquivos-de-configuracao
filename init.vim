@@ -35,9 +35,9 @@ set softtabstop=2
 set shiftwidth=2
 set mouse=a
 set scrolloff=8
-" set colorcolumn=80
+set colorcolumn=80
 set smartindent
-" set cursorline
+set cursorline
 set termguicolors
 
 "
@@ -79,7 +79,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 require("nvim-tree").setup {
   view = {
-    width = 25;
+    width = 35;
   }
 }
 END
@@ -90,18 +90,18 @@ nnoremap <C-b> <cmd>NvimTreeToggle<cr>
 " Indent-blankline
 lua << END
 require("indent_blankline").setup {
-  char = '│',
-  show_current_context = true,
-  -- show_current_context_start = true,
-  show_trailing_blankline_indent = false,
-  filetype_exclude = {"help", "terminal", "dashboard", "NvimTree"},
+char = '│',
+show_current_context = true,
+-- show_current_context_start = true,
+show_trailing_blankline_indent = false,
+filetype_exclude = {"help", "terminal", "dashboard", "NvimTree"},
 }
 END
 
 " Treesiter
 lua << END
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"c", "lua","html", "css", "javascript", "python"},
+  ensure_installed = {"c", "lua","html", "css", "javascript", "python", "java"},
 
   sync_install = false,
 
@@ -151,7 +151,7 @@ dashboard.section.buttons.val = {
   dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("u", "  > Update", ":PlugUpdate<CR>"),
-  dashboard.button("s", "  > Settings", ":edit $HOME/.config/nvim/init.vim<CR>"),
+  dashboard.button("s", "  > Settings", ":edit $HOME/AppData/Local/nvim/init.vim<CR>"),
   dashboard.button("q", "  > Quit", ":qa<CR>"),
 }
 
@@ -350,6 +350,9 @@ nnoremap <C-e> <cmd>NvimTreeToggle<cr>
 nnoremap <C-q> :bd<CR>
 " nnoremap <C-h> :bprevious<CR>
 " nnoremap <C-l> :bnext<CR>
-nnoremap <C-b> :vnew<CR>
+nnoremap <C-b>% :vnew<CR>
+nnoremap <C-b>" :new<CR>
 map <C-h> <C-w>h
 map <C-l> <C-w>l
+map <C-k> <C-w>k
+map <C-j> <C-w>j
