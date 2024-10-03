@@ -1,16 +1,16 @@
-function username {
-  $usr = $env:USERNAME
-  "$usr"
-}
+# function username {
+  # $usr = $env:USERNAME
+  # "$usr"
+# }
 
-function time {
-    $time = Get-Date -Format ("HH:mm")
-    "$time"
-}
-function battery {
-    $bat = (Get-CimInstance -ClassName Win32_Battery).EstimatedChargeRemaining 
-    "󰁹 $bat%"
-}
+# function time {
+    # $time = Get-Date -Format ("HH:mm")
+    # "$time"
+# }
+# function battery {
+    # $bat = (Get-CimInstance -ClassName Win32_Battery).EstimatedChargeRemaining 
+    # "󰁹 $bat%"
+# }
 
 function homeDir {
     $currentPath = (Get-Location).Path
@@ -29,12 +29,12 @@ function git_prompt {
     
     $git_status = & git status --porcelain 2>$null
     if (-not $git_status) {
-      $git_status = '✓'
+      $git_status = "`e[32m✓"
     } else {
-      $git_status = '✗'
+      $git_status = "`e[31m✗"
     }
 
-    " ➜ ($git_branch)$git_status"
+    " `e[35mgit`e[0m::`e[35m(`e[31m$git_branch`e[35m)`e[0m$git_status"
   } else {
     $git_branch = ""
     $git_status = ""
@@ -52,5 +52,7 @@ function prompt {
     if ($principal.IsInRole($adminRole)) {
         $prefix = "[ADMIN]:$prefix"
     }
-    "$(battery) ${prefix}[$(username)@$(time) $(homeDir)]$(git_prompt) "
+    "`e[37m➜  `e[34m$(homeDir)`e[0m$(git_prompt)`e[0m  "
 }
+
+$PSStyle.FileInfo.Directory = $PSStyle.Foreground.Green
