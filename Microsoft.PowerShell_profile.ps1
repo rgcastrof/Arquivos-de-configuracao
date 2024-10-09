@@ -1,3 +1,4 @@
+
 # function username {
   # $usr = $env:USERNAME
   # "$usr"
@@ -7,10 +8,10 @@
     # $time = Get-Date -Format ("HH:mm")
     # "$time"
 # }
-# function battery {
-    # $bat = (Get-CimInstance -ClassName Win32_Battery).EstimatedChargeRemaining 
-    # "󰁹 $bat%"
-# }
+function battery {
+    $bat = (Get-CimInstance -ClassName Win32_Battery).EstimatedChargeRemaining 
+    Write-Host "`nA bateria do notebook está em $bat%"
+}
 
 function homeDir {
     $currentPath = (Get-Location).Path
@@ -52,7 +53,18 @@ function prompt {
     if ($principal.IsInRole($adminRole)) {
         $prefix = "[ADMIN]:$prefix"
     }
-    "`e[37m➜  `e[34m$(homeDir)`e[0m$(git_prompt)`e[0m  "
+    "`e[32m➜  ${prefix}`e[34m$(homeDir)`e[0m$(git_prompt)`e[0m  "
 }
 
+
+#Variáveis de ambiente
+Set-PSReadLineOption -PredictionSource None
 $PSStyle.FileInfo.Directory = $PSStyle.Foreground.Green
+
+# Autostart
+Get-Date
+$(battery)
+
+
+# Aliases
+Set-Alias -Name vim -Value nvim
