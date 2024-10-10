@@ -1,4 +1,4 @@
-
+Import-Module -Name Terminal-Icons
 # function username {
   # $usr = $env:USERNAME
   # "$usr"
@@ -68,3 +68,10 @@ $(battery)
 
 # Aliases
 Set-Alias -Name vim -Value nvim
+Set-Alias -Name df -value Get-Volume
+Set-Alias -Name touch -Value New-Item
+Set-Alias -Name unzip -Value Expand-Archive
+function la { Get-ChildItem -Path . -Force -Hidden | Format-Table -AutoSize }
+function pgrep($name) {
+    Get-Process $name
+}
